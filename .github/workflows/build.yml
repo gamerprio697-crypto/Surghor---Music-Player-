@@ -11,11 +11,13 @@ jobs:
         with: { gradle-version: 8.7 }
       - name: Arrange files
         run: |
-          mkdir -p app/src/main/java/com/example/musicplayer app/src/main/res/mipmap-xxxhdpi
+          mkdir -p app/src/main/java/com/example/musicplayer app/src/main/res/mipmap-xxxhdpi app/src/main/assets
           cp app-build.gradle.kts app/build.gradle.kts
+          cp proguard-rules.pro app/proguard-rules.pro
           cp AndroidManifest.xml app/src/main/AndroidManifest.xml
           cp ic_launcher.png app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
-          cp PlaybackService.kt Songs.kt MainActivity.kt app/src/main/java/com/example/musicplayer/
+          cp splash.mp4 app/src/main/assets/splash.mp4
+          cp *.kt app/src/main/java/com/example/musicplayer/
       - run: gradle assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
